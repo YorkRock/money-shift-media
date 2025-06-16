@@ -1,0 +1,121 @@
+generator client {
+    provider = "prisma-client-js"
+    binaryTargets = ["native", "linux-musl-arm64-openssl-3.0.x"]
+    output = "/home/ubuntu/owned_media/node_modules/.prisma/client"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model Article {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  content     String
+  excerpt     String?
+  category    Category
+  author      String   @default("編集部")
+  publishedAt DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  isPublished Boolean  @default(true)
+  viewCount   Int      @default(0)
+  imageUrl    String?
+  tags        String[] @default([])
+
+  @@map("articles")
+}
+
+model Subscriber {
+  id             String    @id @default(cuid())
+  email          String    @unique
+  name           String?
+  isActive       Boolean   @default(true)
+  subscribedAt   DateTime  @default(now())
+  unsubscribedAt DateTime?
+
+  @@map("subscribers")
+}
+
+model Newsletter {
+  id             String   @id @default(cuid())
+  subject        String
+  content        String
+  sentAt         DateTime @default(now())
+  recipientCount Int      @default(0)
+  articleIds     String[] @default([])
+
+  deliveryLogs   DeliveryLog[]
+
+  @@map("newsletters")
+}
+
+model SimulationResult {
+  id         String   @id @default(cuid())
+  type       String
+  parameters Json
+  result     Json
+  createdAt  DateTime @default(now())
+
+  @@map("simulation_results")
+}
+
+model Admin {
+  id        String   @id @default(cuid())
+  username  String   @unique
+  password  String
+  email     String?
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("admins")
+}
+
+model DeliveryLog {
+  id           String   @id @default(cuid())
+  newsletterId String?
+  email        String
+  subject      String
+  content      String
+  status       DeliveryStatus @default(PENDING)
+  sentAt       DateTime @default(now())
+  errorMessage String?
+
+  newsletter Newsletter? @relation(fields: [newsletterId], references: [id])
+
+  @@map("delivery_logs")
+}
+
+model NewsletterSchedule {
+  id           String   @id @default(cuid())
+  subject      String
+  content      String
+  scheduledAt  DateTime
+  status       ScheduleStatus @default(PENDING)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  articleIds   String[] @default([])
+
+  @@map("newsletter_schedules")
+}
+
+enum Category {
+  BUSINESS
+  TECHNOLOGY
+  MONEY
+  LIFE
+}
+
+enum DeliveryStatus {
+  PENDING
+  SENT
+  FAILED
+}
+
+enum ScheduleStatus {
+  PENDING
+  SENT
+  CANCELLED
+}
