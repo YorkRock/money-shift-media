@@ -1,0 +1,45 @@
+yarn run v1.22.22
+$ next dev
+  ▲ Next.js 14.2.28
+  - Local:        http://localhost:3000
+  - Environments: .env.local, .env
+  - Experiments (use with caution):
+    · outputFileTracingRoot
+
+ ✓ Starting...
+Attention: Next.js now collects completely anonymous telemetry regarding usage.
+This information is used to shape Next.js' roadmap and prioritize features.
+You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+https://nextjs.org/telemetry
+
+ ✓ Ready in 2.1s
+ ○ Compiling / ...
+ ✓ Compiled / in 6.5s (2453 modules)
+ ○ Compiling /api/articles ...
+ ✓ Compiled /api/articles in 3.2s (2476 modules)
+ GET /api/articles?limit=20 200 in 2864ms
+ GET / 200 in 9935ms
+ GET /api/articles?limit=20 200 in 47ms
+ GET / 200 in 199ms
+ ✓ Compiled /api/auth/[...nextauth] in 248ms (1264 modules)
+ ✓ Compiled (1497 modules)
+ GET /api/articles/popular 200 in 1537ms
+ GET /api/articles/popular 200 in 49ms
+ GET /api/auth/session 200 in 2131ms
+ GET /api/auth/session 200 in 30ms
+ GET /api/articles?limit=20 200 in 24ms
+ GET / 200 in 123ms
+ ✓ Compiled /middleware in 319ms (174 modules)
+ ○ Compiling /admin/login ...
+ ✓ Compiled /admin/login in 597ms (2749 modules)
+ GET /admin/login 200 in 761ms
+ GET /api/articles?limit=20 200 in 32ms
+ GET / 200 in 103ms
+ GET /api/articles?limit=20 200 in 27ms
+ GET / 200 in 71ms
+ GET /api/articles?limit=20 200 in 24ms
+ GET / 200 in 72ms
+ GET /api/auth/session 200 in 46ms
+ GET /api/articles/popular 200 in 63ms
+ GET /api/auth/session 200 in 37ms
+ GET /api/articles/popular 200 in 55ms

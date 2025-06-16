@@ -1,0 +1,37 @@
+
+{
+  "buildCommand": "yarn build",
+  "outputDirectory": ".next",
+  "installCommand": "yarn install",
+  "framework": "nextjs",
+  "functions": {
+    "app/api/**/*.ts": {
+      "maxDuration": 30
+    }
+  },
+  "crons": [
+    {
+      "path": "/api/cron/update-articles",
+      "schedule": "0 */6 * * *"
+    },
+    {
+      "path": "/api/cron/scheduler",
+      "schedule": "*/5 * * * *"
+    }
+  ],
+  "env": {
+    "NEXT_PUBLIC_APP_URL": "https://money-shift.jp",
+    "NEXTAUTH_URL": "https://money-shift.jp",
+    "DATABASE_URL": "@database_url",
+    "NEXTAUTH_SECRET": "@nextauth_secret",
+    "EMAIL_FROM": "shift@money-shift.jp",
+    "SMTP_HOST": "@smtp_host",
+    "SMTP_PORT": "@smtp_port",
+    "SMTP_USER": "@smtp_user",
+    "SMTP_PASSWORD": "@smtp_password",
+    "ADMIN_USERNAME": "@admin_username",
+    "ADMIN_PASSWORD": "@admin_password",
+    "ADMIN_EMAIL": "@admin_email"
+  },
+  "domains": ["money-shift.jp", "www.money-shift.jp"]
+}

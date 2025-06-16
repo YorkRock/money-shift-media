@@ -1,0 +1,11 @@
+
+{
+  "scripts": {
+    "vercel-build": "prisma generate && prisma migrate deploy && next build",
+    "postinstall": "prisma generate",
+    "db:migrate": "prisma migrate deploy",
+    "db:seed:production": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed-production.ts",
+    "db:reset": "prisma migrate reset --force",
+    "db:studio": "prisma studio"
+  }
+}
